@@ -20,8 +20,8 @@ public class Drug {
     @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
 
-    @OneToMany(mappedBy = "drug", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Packing> packings;
+//    @OneToMany(mappedBy = "drug", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Packing> packings;
 
 
     public Drug() {
@@ -60,13 +60,13 @@ public class Drug {
         this.registrationNumber = registrationNumber;
     }
 
-    public Set<Packing> getPackings() {
-        return packings;
-    }
-
-    public void setPackings(Set<Packing> packings) {
-        this.packings = packings;
-    }
+//    public Set<Packing> getPackings() {
+//        return packings;
+//    }
+//
+//    public void setPackings(Set<Packing> packings) {
+//        this.packings = packings;
+//    }
 
 
     @Override
