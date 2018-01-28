@@ -1,4 +1,4 @@
-First Aid Kit ![alt text](https://www.cdc.gov/TemplatePackage/3.0/images/social/addthis-32.png "Red cross")
+First-Aid Kit ![alt text](https://www.cdc.gov/TemplatePackage/3.0/images/social/addthis-32.png "Red cross")
 ================
 _Have you ever been perplexed where have you got a specific drug that you need right now?
 Where do you store it?_
