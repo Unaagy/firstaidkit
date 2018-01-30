@@ -20,4 +20,23 @@
         </properties>
     </persistence-unit>
 
+    <persistence-unit name="TestUnitH2File">
+        <properties>
+
+            <property name="hibernate.archive.autodetection" value="class" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:./target/h2dbs/h2-1_file"/>
+            <property name="hibernate.connection.user" value="sa" />
+            <property name="hibernate.connection.password" value="" />
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+        </properties>
+    </persistence-unit>
+
 </persistence>

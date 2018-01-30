@@ -30,6 +30,9 @@ public class FirstAidKitMain {
         createPacking(em);
         createStoringPlace(em);
 
+        System.out.println(em.find(Drug.class, 1L).getDrugName());
+        System.out.println(em.find(Packing.class, packing.getId()).getDrug());
+
         em.close();
         factory.close();
 

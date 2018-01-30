@@ -20,13 +20,16 @@ public class Drug {
     @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
 
-//    @OneToMany(mappedBy = "drug", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Packing> packings;
-
 
     public Drug() {
     }
 
+
+    public Drug(String drugName, String activeSubstance, String registrationNumber) {
+        this.drugName = drugName;
+        this.activeSubstance = activeSubstance;
+        this.registrationNumber = registrationNumber;
+    }
 
     public long getId() {
         return id;
@@ -59,14 +62,6 @@ public class Drug {
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
-
-//    public Set<Packing> getPackings() {
-//        return packings;
-//    }
-//
-//    public void setPackings(Set<Packing> packings) {
-//        this.packings = packings;
-//    }
 
 
     @Override
