@@ -11,7 +11,7 @@ public class StoringPlace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "STORING_PLACE_NAME")
+    @Column(name = "STORING_PLACE_NAME", nullable = false)
     private String storingPlaceName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -49,6 +49,28 @@ public class StoringPlace {
 
     public void setPackings(Set<Packing> packings) {
         this.packings = packings;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StoringPlace that = (StoringPlace) o;
+
+        if (id != that.id) return false;
+        if (storingPlaceName != null ? !storingPlaceName.equals(that.storingPlaceName) : that.storingPlaceName != null)
+            return false;
+        return packings != null ? packings.equals(that.packings) : that.packings == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (storingPlaceName != null ? storingPlaceName.hashCode() : 0);
+        result = 31 * result + (packings != null ? packings.hashCode() : 0);
+        return result;
     }
 
 

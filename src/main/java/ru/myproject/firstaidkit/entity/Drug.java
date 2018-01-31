@@ -11,7 +11,7 @@ public class Drug {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "DRUG_NAME")
+    @Column(name = "DRUG_NAME", nullable = false)
     private String drugName;
 
     @Column(name = "ACTIVE_SUBSTANCE")
@@ -61,6 +61,30 @@ public class Drug {
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Drug drug = (Drug) o;
+
+        if (id != drug.id) return false;
+        if (drugName != null ? !drugName.equals(drug.drugName) : drug.drugName != null) return false;
+        if (activeSubstance != null ? !activeSubstance.equals(drug.activeSubstance) : drug.activeSubstance != null)
+            return false;
+        return registrationNumber != null ? registrationNumber.equals(drug.registrationNumber) : drug.registrationNumber == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (drugName != null ? drugName.hashCode() : 0);
+        result = 31 * result + (activeSubstance != null ? activeSubstance.hashCode() : 0);
+        result = 31 * result + (registrationNumber != null ? registrationNumber.hashCode() : 0);
+        return result;
     }
 
 

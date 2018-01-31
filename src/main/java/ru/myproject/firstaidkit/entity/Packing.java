@@ -29,6 +29,7 @@ public class Packing {
     @Column(name = "EXPIRATION_DATE")
     private Date expirationDate;
 
+    @Column(name = "STORING_PLACE", nullable = false)
     @ManyToMany(mappedBy = "packings")
     private Set<StoringPlace> storingPlaces;
 
@@ -36,6 +37,14 @@ public class Packing {
     public Packing() {
     }
 
+    public Packing(Drug drug, String manufacturer, long amount, long dosage, Date expirationDate, Set<StoringPlace> storingPlaces) {
+        this.drug = drug;
+        this.manufacturer = manufacturer;
+        this.amount = amount;
+        this.dosage = dosage;
+        this.expirationDate = expirationDate;
+        this.storingPlaces = storingPlaces;
+    }
 
     public long getId() {
         return id;
@@ -91,6 +100,37 @@ public class Packing {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Packing packing = (Packing) o;
+
+        if (id != packing.id) return false;
+        if (amount != packing.amount) return false;
+        if (dosage != packing.dosage) return false;
+        if (drug != null ? !drug.equals(packing.drug) : packing.drug != null) return false;
+        if (manufacturer != null ? !manufacturer.equals(packing.manufacturer) : packing.manufacturer != null)
+            return false;
+        if (expirationDate != null ? !expirationDate.equals(packing.expirationDate) : packing.expirationDate != null)
+            return false;
+        return storingPlaces != null ? storingPlaces.equals(packing.storingPlaces) : packing.storingPlaces == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (drug != null ? drug.hashCode() : 0);
+        result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
+        result = 31 * result + (int) (amount ^ (amount >>> 32));
+        result = 31 * result + (int) (dosage ^ (dosage >>> 32));
+        result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
+        result = 31 * result + (storingPlaces != null ? storingPlaces.hashCode() : 0);
+        return result;
     }
 
 
