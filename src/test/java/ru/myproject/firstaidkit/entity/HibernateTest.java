@@ -19,8 +19,8 @@ public class HibernateTest {
 
     @After
     public void terDown() {
-        emFactory.close();
         em.close();
+        emFactory.close();
     }
 
     @Test
