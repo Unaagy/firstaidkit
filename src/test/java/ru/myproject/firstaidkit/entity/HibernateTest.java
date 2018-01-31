@@ -75,4 +75,18 @@ public class HibernateTest {
 
     }
 
+    @Test
+    public void storingPlaceTest() {
+
+        StoringPlace storingPlace = new StoringPlace();
+        storingPlace.setStoringPlaceName("Box");
+
+        em.getTransaction().begin();
+        em.persist(storingPlace);
+        em.getTransaction().commit();
+
+        assertEquals("Box", em.find(StoringPlace.class, storingPlace.getId()).getStoringPlaceName());
+
+    }
+
 }
