@@ -7,6 +7,8 @@ import ru.myproject.firstaidkit.entity.Drug;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
@@ -35,17 +37,37 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
 
     @Override
     public List<Drug> getAll() {
-        return null;
+
+        try {
+            String sql = "SELECT d FROM Drug d";
+            List<Drug> list = em.createQuery(sql).getResultList();
+            return list;
+        } catch (NoResultException e) {
+            return null;
+        }
+
     }
 
     @Override
     public Drug getById(long id) {
-        return null;
+        try {
+            return (Drug) em.createQuery("SELECT d FROM Drug d WHERE d.id = :id")
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public Drug getByName(String name) {
-        return null;
+        try {
+            return (Drug) em.createQuery("SELECT d FROM Drug d WhERE d.drugName = :name")
+                    .setParameter("name", name)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
