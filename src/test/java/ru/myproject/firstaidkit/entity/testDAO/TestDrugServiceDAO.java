@@ -62,4 +62,17 @@ public class TestDrugServiceDAO {
     }
 
 
+    @Test
+    public void deleteTest() {
+
+        DrugServiceDAO drugServiceDAO = new DrugServiceDAO(emFactory);
+        drugServiceDAO.add(drug);
+
+        drugServiceDAO.delete(drug);
+
+        assertNull("**********NULL************", testManager.find(Drug.class, drug.getId()));
+
+    }
+
+
 }

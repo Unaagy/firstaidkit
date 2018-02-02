@@ -20,6 +20,6 @@ public interface DrugDAO {
     Drug update (Drug drug);
 
     //delete
-    void remove(Drug drug);
+    void delete(Drug drug);
 
 }

@@ -57,13 +57,22 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
             commitEntityManagerTransaction();
             return mergedDrug;
         } catch (Throwable t) {
+            rollbackEntityManagerTransaction();
             return drug;
         }
 
     }
 
     @Override
-    public void remove(Drug drug) {
+    public void delete(Drug drug) {
+        beginEntityManagerTransaction();
+
+        try {
+            em.remove(drug);
+            commitEntityManagerTransaction();
+        } catch (Throwable t) {
+            rollbackEntityManagerTransaction();
+        }
 
     }
 }
