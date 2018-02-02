@@ -17,7 +17,7 @@ public interface DrugDAO {
     Drug getByName(String name);
 
     //update
-    void update (Drug drug);
+    Drug update (Drug drug);
 
     //delete
     void remove(Drug drug);

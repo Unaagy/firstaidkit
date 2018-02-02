@@ -40,6 +40,25 @@ public class TestDrugServiceDAO {
 
         assertEquals("Mig", testManager.find(Drug.class, drug.getId()).getDrugName());
 
+        drugServiceDAO.closeEntityManager();
+
+    }
+
+
+    @Test
+    public void updateTest() {
+
+        DrugServiceDAO drugServiceDAO = new DrugServiceDAO(emFactory);
+        drugServiceDAO.add(drug);
+
+        drug.setDrugName("Aspirine");
+
+        drug = drugServiceDAO.update(drug);
+
+        assertEquals("Aspirine", testManager.find(Drug.class, drug.getId()).getDrugName());
+
+        drugServiceDAO.closeEntityManager();
+
     }
 
 

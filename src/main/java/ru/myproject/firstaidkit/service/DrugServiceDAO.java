@@ -1,5 +1,6 @@
 package ru.myproject.firstaidkit.service;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import ru.myproject.firstaidkit.bl.EntityManagerUtil;
 import ru.myproject.firstaidkit.dao.DrugDAO;
 import ru.myproject.firstaidkit.entity.Drug;
@@ -26,7 +27,6 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
         try {
             em.persist(drug);
             commitEntityManagerTransaction();
-            closeEntityManager();
         } catch (Throwable t) {
             rollbackEntityManagerTransaction();
         }
@@ -49,7 +49,16 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
     }
 
     @Override
-    public void update(Drug drug) {
+    public Drug update(Drug drug) {
+        beginEntityManagerTransaction();
+
+        try {
+            Drug mergedDrug = em.merge(drug);
+            commitEntityManagerTransaction();
+            return mergedDrug;
+        } catch (Throwable t) {
+            return drug;
+        }
 
     }
 
