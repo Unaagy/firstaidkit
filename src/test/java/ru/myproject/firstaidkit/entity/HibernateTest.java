@@ -1,7 +1,6 @@
 package ru.myproject.firstaidkit.entity;
 
 import org.junit.*;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 import javax.persistence.*;
@@ -16,6 +15,7 @@ public class HibernateTest {
     private EntityManager em;
 
     Date date;
+
 
     @Before
     public void setup() {
@@ -33,6 +33,7 @@ public class HibernateTest {
         em.close();
         emFactory.close();
     }
+
 
     @Test
     public void drugTest() {
