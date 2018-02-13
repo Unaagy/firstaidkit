@@ -42,6 +42,14 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -62,7 +70,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>5.0.3.RELEASE</version>
         </dependency>
-
 
 
     </dependencies>
