@@ -1,6 +1,7 @@
 package ru.myproject.firstaidkit.service;
 
 import net.bytebuddy.implementation.bytecode.Throw;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.myproject.firstaidkit.bl.EntityManagerUtil;
 import ru.myproject.firstaidkit.dao.DrugDAO;
@@ -16,13 +17,13 @@ import java.util.List;
 @Service
 public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
 
-    private EntityManagerFactory factory;
+//    private EntityManagerFactory factory;
 
     private EntityManager em;
 
-
+    @Autowired
     public DrugServiceDAO(EntityManagerFactory factory) {
-        this.factory = factory;
+//        this.factory = factory;
         em = getEntityManager(factory);
     }
 
