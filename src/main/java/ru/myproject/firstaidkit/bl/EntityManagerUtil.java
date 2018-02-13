@@ -3,6 +3,7 @@ package ru.myproject.firstaidkit.bl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+@Deprecated
 public class EntityManagerUtil {
 
     private EntityManager entityManager;

@@ -1,6 +1,7 @@
 package ru.myproject.firstaidkit.service;
 
 import net.bytebuddy.implementation.bytecode.Throw;
+import org.springframework.stereotype.Service;
 import ru.myproject.firstaidkit.bl.EntityManagerUtil;
 import ru.myproject.firstaidkit.dao.DrugDAO;
 import ru.myproject.firstaidkit.entity.Drug;
@@ -11,16 +12,20 @@ import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
 public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
 
     private EntityManagerFactory factory;
 
     private EntityManager em;
 
+
     public DrugServiceDAO(EntityManagerFactory factory) {
         this.factory = factory;
         em = getEntityManager(factory);
     }
+
 
     @Override
     public void add(Drug drug) {

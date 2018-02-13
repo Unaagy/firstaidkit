@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface DrugDAO {
 
+    /*
+    TODO
+    Add createDrug() to the DrugDAO and DrugServiceDAO
+     */
+
     //create
     void add(Drug drug);
 
