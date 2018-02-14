@@ -1,4 +1,4 @@
-<jsp:useBean id="drug_bean" class="ru.myproject.firstaidkit.beans.DrugBean" scope="request"/>
+<jsp:useBean id="drug_bean" type="ru.myproject.firstaidkit.beans.DrugBean" scope="request"/> <!-- Эту сттроку можно закомментить -->
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <DOCTYPE html>
