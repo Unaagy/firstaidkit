@@ -14,14 +14,17 @@
             <th width="100">Name</th>
             <th width="200">Active substance</th>
             <th width="100">Number</th>
+            <th width="60">Edit</th>
+            <th width="60">Delete</th>
         </tr>
         <c:forEach items="${requestScope['drug_bean'].drugs}" var="drug">
-
         <tr>
             <td align="center">${drug.id}</td>
             <td>${drug.drugName}</td>
             <td>${drug.activeSubstance}</td>
             <td>${drug.registrationNumber}</td>
+            <td align="center">Edit</td>
+            <td align="center">Delete</td>
         <tr>
             </c:forEach>
     </table>

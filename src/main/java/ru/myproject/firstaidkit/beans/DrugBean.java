@@ -23,5 +23,17 @@ public class DrugBean {
         this.drugs = drugs;
     }
 
+    public Drug getDrug() {
+        return drug;
+    }
+
+    public void setDrug(Drug drug) {
+        this.drug = drug;
+    }
+
+    public long getId() {
+        return id;
+    }
+
 
 }

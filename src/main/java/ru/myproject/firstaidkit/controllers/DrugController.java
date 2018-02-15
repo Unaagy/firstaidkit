@@ -21,14 +21,18 @@ public class DrugController {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/")
-    public String index(ModelMap model){
+    public String index(ModelMap model) {
         DrugBean drugBean = new DrugBean();
         drugBean.setDrugs(dao.getAll());
 
         model.put("drug_bean", drugBean);
 
-        return "index";
+        return "drugPage";
     }
+
+    /*
+    TODO Do Post and etc.
+     */
 
 
 }

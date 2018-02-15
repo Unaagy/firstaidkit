@@ -7,8 +7,7 @@ import java.util.List;
 public interface DrugDAO {
 
     /*
-    TODO
-    Add createDrug() to the DrugDAO and DrugServiceDAO
+    TODO Add createDrug() to the DrugDAO and DrugServiceDAO
      */
 
     //create

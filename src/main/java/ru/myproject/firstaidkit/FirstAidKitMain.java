@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+@Deprecated
 public class FirstAidKitMain {
 
     private  static Drug drug;
