@@ -41,6 +41,11 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
     }
 
     @Override
+    public void createDrug(String drugName, String activeSubstance, String registrationNumber) {
+
+    }
+
+    @Override
     public List<Drug> getAll() {
 
         try {

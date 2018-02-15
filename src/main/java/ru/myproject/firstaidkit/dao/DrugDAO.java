@@ -13,6 +13,8 @@ public interface DrugDAO {
     //create
     void add(Drug drug);
 
+    void createDrug(String drugName, String activeSubstance, String registrationNumber);
+
     //read
     List<Drug> getAll();
 
