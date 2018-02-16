@@ -1,11 +1,12 @@
 package ru.myproject.firstaidkit.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "DRUG")
-public class Drug {
+public class Drug implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

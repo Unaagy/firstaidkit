@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class TestDrugServiceDAO {
 
     private EntityManagerFactory emFactory;
-    private EntityManager testManager;
+    private EntityManager testEntityManager;
 
     private DrugServiceDAO drugServiceDAO;
 
@@ -23,7 +23,7 @@ public class TestDrugServiceDAO {
     @Before
     public void setUp() throws Exception {
         emFactory = Persistence.createEntityManagerFactory("TestUnitH2File");
-        testManager = emFactory.createEntityManager();
+        testEntityManager = emFactory.createEntityManager();
 
         drugServiceDAO = new DrugServiceDAO(emFactory);
 
@@ -33,6 +33,7 @@ public class TestDrugServiceDAO {
     @After
     public void tearDown() throws Exception {
         drug = null;
+        testEntityManager.close();
     }
 
 
@@ -41,12 +42,19 @@ public class TestDrugServiceDAO {
 
         drugServiceDAO.add(drug);
 
-        assertEquals("Mig", testManager.find(Drug.class, drug.getId()).getDrugName());
+        assertEquals("Mig", testEntityManager.find(Drug.class, drug.getId()).getDrugName());
 
-        drugServiceDAO.closeEntityManager();
+//        drugServiceDAO.closeEntityManager();
 
     }
 
+    @Test
+    public void createTest() {
+        drugServiceDAO.createDrug("Brom", "Bromium", "VS-010101");
+
+        assertEquals("Bromium", drugServiceDAO.getByName("Brom").getActiveSubstance());
+        assertEquals(1L, drugServiceDAO.getByName("Brom").getId());
+    }
 
     @Test
     public void updateTest() {
@@ -57,9 +65,9 @@ public class TestDrugServiceDAO {
 
         drug = drugServiceDAO.update(drug);
 
-        assertEquals("Aspirine", testManager.find(Drug.class, drug.getId()).getDrugName());
+        assertEquals("Aspirine", testEntityManager.find(Drug.class, drug.getId()).getDrugName());
 
-        drugServiceDAO.closeEntityManager();
+//        drugServiceDAO.closeEntityManager();
 
     }
 
@@ -71,9 +79,9 @@ public class TestDrugServiceDAO {
 
         drugServiceDAO.delete(drug);
 
-        assertNull("**********NULL************", testManager.find(Drug.class, drug.getId()));
+        assertNull("**********NULL************", testEntityManager.find(Drug.class, drug.getId()));
 
-        drugServiceDAO.closeEntityManager();
+//        drugServiceDAO.closeEntityManager();
 
     }
 
@@ -88,7 +96,7 @@ public class TestDrugServiceDAO {
 
         assertNotNull(drugServiceDAO.getAll());
 
-        drugServiceDAO.closeEntityManager();
+//        drugServiceDAO.closeEntityManager();
 
     }
 
@@ -105,7 +113,7 @@ public class TestDrugServiceDAO {
         assertEquals("Analgin", drugServiceDAO.getById(2L).getActiveSubstance());
         assertNull(drugServiceDAO.getById(100L));
 
-        drugServiceDAO.closeEntityManager();
+//        drugServiceDAO.closeEntityManager();
 
     }
 
@@ -122,7 +130,7 @@ public class TestDrugServiceDAO {
         assertEquals("Ibuprofen", drugServiceDAO.getByName("Aspirine").getActiveSubstance());
         assertNull(drugServiceDAO.getByName("Kadilak"));
 
-        drugServiceDAO.closeEntityManager();
+//        drugServiceDAO.closeEntityManager();
 
     }
 

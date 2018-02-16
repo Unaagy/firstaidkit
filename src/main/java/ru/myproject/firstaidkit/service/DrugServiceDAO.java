@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Service
-public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
+public class DrugServiceDAO implements DrugDAO {
 
 //    private EntityManagerFactory factory;
 
@@ -22,27 +22,32 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
     @Autowired
     public DrugServiceDAO(EntityManagerFactory factory) {
 //        this.factory = factory;
-        em = getEntityManager(factory);
+        em = factory.createEntityManager();
 //        this.em = em;
     }
 
 
     @Override
     public void add(Drug drug) {
-        beginEntityManagerTransaction();
+//        beginEntityManagerTransaction();
+        em.getTransaction().begin();
 
         try {
             em.persist(drug);
-            commitEntityManagerTransaction();
+//            commitEntityManagerTransaction();
+            em.getTransaction().commit();
         } catch (Throwable t) {
-            rollbackEntityManagerTransaction();
+//            rollbackEntityManagerTransaction();
+            em.getTransaction().rollback();
+            throw t;
         }
 
     }
 
     @Override
     public void createDrug(String drugName, String activeSubstance, String registrationNumber) {
-
+        Drug drug = new Drug(drugName, activeSubstance, registrationNumber);
+        add(drug);
     }
 
     @Override
@@ -80,16 +85,20 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
         }
     }
 
+    //TODO Do it in one transaction by get and persist
     @Override
     public Drug update(Drug drug) {
-        beginEntityManagerTransaction();
+//        beginEntityManagerTransaction();
+        em.getTransaction().begin();
 
         try {
             Drug mergedDrug = em.merge(drug);
-            commitEntityManagerTransaction();
+//            commitEntityManagerTransaction();
+            em.getTransaction().commit();
             return mergedDrug;
         } catch (Throwable t) {
-            rollbackEntityManagerTransaction();
+//            rollbackEntityManagerTransaction();
+            em.getTransaction().rollback();
             return drug;
         }
 
@@ -97,13 +106,17 @@ public class DrugServiceDAO extends EntityManagerUtil implements DrugDAO {
 
     @Override
     public void delete(Drug drug) {
-        beginEntityManagerTransaction();
+//        beginEntityManagerTransaction();
+        em.getTransaction().begin();
 
         try {
             em.remove(drug);
-            commitEntityManagerTransaction();
+//            commitEntityManagerTransaction();
+            em.getTransaction().commit();
         } catch (Throwable t) {
-            rollbackEntityManagerTransaction();
+//            rollbackEntityManagerTransaction();
+            em.getTransaction().rollback();
+            throw t;
         }
 
     }
