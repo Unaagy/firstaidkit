@@ -85,17 +85,23 @@ public class DrugServiceDAO implements DrugDAO {
         }
     }
 
-    //TODO Do it in one transaction by get and persist
     @Override
     public Drug update(Drug drug) {
 //        beginEntityManagerTransaction();
         em.getTransaction().begin();
 
         try {
-            Drug mergedDrug = em.merge(drug);
+//            Drug mergedDrug = em.merge(drug);
 //            commitEntityManagerTransaction();
+//            em.getTransaction().commit();
+//            return mergedDrug;
+            Drug drug2 = getById(drug.getId());
+            drug2.setDrugName(drug.getDrugName());
+            drug2.setRegistrationNumber(drug.getRegistrationNumber());
+            drug2.setActiveSubstance(drug.getActiveSubstance());
+            em.persist(drug2);
             em.getTransaction().commit();
-            return mergedDrug;
+            return drug2;
         } catch (Throwable t) {
 //            rollbackEntityManagerTransaction();
             em.getTransaction().rollback();
