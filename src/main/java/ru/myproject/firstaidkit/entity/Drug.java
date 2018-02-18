@@ -12,7 +12,7 @@ public class Drug implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "DRUG_NAME", nullable = false)
+    @Column(name = "DRUG_NAME", nullable = false, unique = true)
     private String drugName;
 
     @Column(name = "ACTIVE_SUBSTANCE")
