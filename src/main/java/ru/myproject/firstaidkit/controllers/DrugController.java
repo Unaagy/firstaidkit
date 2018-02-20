@@ -41,11 +41,20 @@ public class DrugController {
     public String addDrug(@RequestParam String drugName,
                           @RequestParam (required = false) String activeSubstance,
                           @RequestParam(required = false) String registrationNumber, ModelMap model) {
-        dao.createDrug(drugName, activeSubstance, registrationNumber);
-
+        try {
+            dao.createDrug(drugName, activeSubstance, registrationNumber);
+        }catch (Throwable t) {
+            System.out.println("********************" + t.toString());
+            return "redirect:/error/addDrugProblemPage";
+        }
         System.out.println("********** ADD DRUGS ******************");
 
         return drugList(model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "error/addDrugProblemPage")
+    public String addDrugProblem() {
+        return "addDrugProblemPage";
     }
 
 
