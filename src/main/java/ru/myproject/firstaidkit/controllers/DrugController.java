@@ -3,6 +3,7 @@ package ru.myproject.firstaidkit.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ public class DrugController {
     }
 
 
+    //Show all drugs on a page
     //TODO Don't forget to change it, when real index appear
     @RequestMapping(method = RequestMethod.GET, path = "/")
     public String drugList(ModelMap model) {
@@ -37,13 +39,14 @@ public class DrugController {
     /*
     TODO Do Post and etc.
      */
+    //Add new drug to a DB, using post from addDrugPage.jsp
     @RequestMapping(method = RequestMethod.POST, path = "/addDrugPage")
     public String addDrug(@RequestParam String drugName,
-                          @RequestParam (required = false) String activeSubstance,
+                          @RequestParam(required = false) String activeSubstance,
                           @RequestParam(required = false) String registrationNumber, ModelMap model) {
         try {
             dao.createDrug(drugName, activeSubstance, registrationNumber);
-        }catch (Throwable t) {
+        } catch (Throwable t) {
             System.out.println("********************" + t.toString());
             return "redirect:/error/addDrugProblemPage";
         }
@@ -52,9 +55,20 @@ public class DrugController {
         return drugList(model);
     }
 
+    //Open addDrugProblemPage.jsp if there is a problen in addDrug() method
     @RequestMapping(method = RequestMethod.GET, path = "error/addDrugProblemPage")
     public String addDrugProblem() {
         return "addDrugProblemPage";
+    }
+
+    //TODO 26:14 in the video Delete()
+    //Delete drug from DB
+    @RequestMapping(path = "/deleteDrug/{id}")
+    public String deleteDrug(@PathVariable("id") long id) {
+
+        dao.delete(dao.getById(id));
+
+        return "redirect:/";
     }
 
 

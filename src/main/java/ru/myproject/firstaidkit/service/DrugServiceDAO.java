@@ -95,6 +95,7 @@ public class DrugServiceDAO implements DrugDAO {
 //            commitEntityManagerTransaction();
 //            em.getTransaction().commit();
 //            return mergedDrug;
+            //TODO try to do it using links instead of two objects
             Drug drug2 = getById(drug.getId());
             drug2.setDrugName(drug.getDrugName());
             drug2.setRegistrationNumber(drug.getRegistrationNumber());

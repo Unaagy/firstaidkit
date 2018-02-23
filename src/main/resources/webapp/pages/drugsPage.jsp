@@ -24,18 +24,15 @@
             <td>${drug.drugName}</td>
             <td>${drug.activeSubstance}</td>
             <td>${drug.registrationNumber}</td>
-            <td align="center">Edit</td>
-            <td align="center">Delete</td>
+            <td align="center"><a href="<c:url value="/error/addDrugProblemPage"/>">Edit</a></td>
+            <td align="center"><a href="<c:url value="/deleteDrug/${drug.id}"/>">Delete</a></td>
         <tr>
             </c:forEach>
     </table>
 
-    <p></p>
+    <br/>
     <a href="pages/addDrugPage.jsp">Add new drug</a>
 
-    <%--<p>--%>
-    <%--<a href="addPart.jsp">Add part</a>--%>
-    <%--</p>--%>
 
     </body>
     </html>
