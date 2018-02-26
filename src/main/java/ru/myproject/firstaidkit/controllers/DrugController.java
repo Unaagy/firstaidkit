@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.myproject.firstaidkit.beans.DrugBean;
+import ru.myproject.firstaidkit.entity.Drug;
 import ru.myproject.firstaidkit.service.DrugServiceDAO;
 
 @Controller
@@ -29,12 +30,13 @@ public class DrugController {
         DrugBean drugBean = new DrugBean();
         drugBean.setDrugs(dao.getAll());
 
-        model.put("drug_bean", drugBean);
+        model.put("drugs_bean", drugBean);
 
         System.out.println("********** DRUGS ******************");
 
         return "drugsPage";
     }
+
 
     /*
     TODO Do Post and etc.
@@ -55,13 +57,14 @@ public class DrugController {
         return drugList(model);
     }
 
+
     //Open addDrugProblemPage.jsp if there is a problen in addDrug() method
     @RequestMapping(method = RequestMethod.GET, path = "error/addDrugProblemPage")
     public String addDrugProblem() {
         return "addDrugProblemPage";
     }
 
-    //TODO 26:14 in the video Delete()
+
     //Delete drug from DB
     @RequestMapping(path = "/deleteDrug/{id}")
     public String deleteDrug(@PathVariable("id") long id) {
@@ -71,5 +74,42 @@ public class DrugController {
         return "redirect:/";
     }
 
+
+    //Edit drug
+    //TODO 26:56 36:11 in the video Delete()
+    @RequestMapping(method = RequestMethod.GET, path = "/editDrug/{id}")
+    public String editDrug(@PathVariable("id") long id, ModelMap model) {
+
+        DrugBean drugBean = new DrugBean();
+        drugBean.setDrug(dao.getById(id));
+
+        model.addAttribute("drug_bean", drugBean);
+
+        return "editDrugPage";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/editDrug")
+    public String editDrugPost(@RequestParam long id,
+                               @RequestParam String drugName,
+                               @RequestParam(required = false) String activeSubstance,
+                               @RequestParam(required = false) String registrationNumber) {
+
+        try {
+            Drug drug = dao.getById(id);
+
+            drug.setDrugName(drugName);
+            drug.setActiveSubstance(activeSubstance);
+            drug.setRegistrationNumber(registrationNumber);
+
+            dao.update(drug);
+
+        } catch (Throwable t) {
+            System.out.println("********************" + t.toString());
+            return "redirect:/error/addDrugProblemPage";
+        }
+        System.out.println("********** EDIT DRUG ******************");
+
+        return "redirect:/";
+    }
 
 }

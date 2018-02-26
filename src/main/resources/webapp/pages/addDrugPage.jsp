@@ -9,7 +9,7 @@
     <h1>Add new drug</h1>
 
     <form action="/addDrugPage" method="post">
-        <p>Dug name*:</p>
+        <p>Drug name*:</p>
         <p><input type="text" name="drugName"></p>
         <p>Active substance:</p>
         <p><input type="text" name="activeSubstance"></p>
