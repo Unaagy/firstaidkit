@@ -11,6 +11,8 @@ import ru.myproject.firstaidkit.beans.DrugBean;
 import ru.myproject.firstaidkit.entity.Drug;
 import ru.myproject.firstaidkit.service.DrugServiceDAO;
 
+import javax.persistence.PersistenceException;
+
 @Controller
 public class DrugController {
 
@@ -38,15 +40,13 @@ public class DrugController {
     }
 
 
-    /*
-    TODO Do Post and etc.
-     */
     //Add new drug to a DB, using post from addDrugPage.jsp
     @RequestMapping(method = RequestMethod.POST, path = "/addDrugPage")
     public String addDrug(@RequestParam String drugName,
                           @RequestParam(required = false) String activeSubstance,
                           @RequestParam(required = false) String registrationNumber, ModelMap model) {
         try {
+            if (drugName.equals("")) throw new PersistenceException();
             dao.createDrug(drugName, activeSubstance, registrationNumber);
         } catch (Throwable t) {
             System.out.println("********************" + t.toString());
@@ -76,7 +76,6 @@ public class DrugController {
 
 
     //Edit drug
-    //TODO 26:56 36:11 in the video Delete()
     @RequestMapping(method = RequestMethod.GET, path = "/editDrug/{id}")
     public String editDrug(@PathVariable("id") long id, ModelMap model) {
 
