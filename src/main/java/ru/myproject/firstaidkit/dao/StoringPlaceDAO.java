@@ -20,7 +20,7 @@ public interface StoringPlaceDAO {
     StoringPlace getByName(String name);
 
     //update
-    void update(StoringPlace storingPlace);
+    StoringPlace update(StoringPlace storingPlace);
 
     //delete
     void remove(StoringPlace storingPlace);
