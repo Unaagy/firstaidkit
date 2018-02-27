@@ -1,6 +1,7 @@
 package ru.myproject.firstaidkit.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class StoringPlace {
             joinColumns = @JoinColumn(name = "STORING_PLACE_ID"),
             inverseJoinColumns = @JoinColumn(name = "PACKING_ID")
     )
-    private Set<Packing> packings;
+    private List<Packing> packings;
 
 
     public StoringPlace() {
@@ -43,11 +44,11 @@ public class StoringPlace {
         this.storingPlaceName = name;
     }
 
-    public Set<Packing> getPackings() {
+    public List<Packing> getPackings() {
         return packings;
     }
 
-    public void setPackings(Set<Packing> packings) {
+    public void setPackings(List<Packing> packings) {
         this.packings = packings;
     }
 
