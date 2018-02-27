@@ -84,7 +84,7 @@ public class StoringPlaceServiceDAO implements StoringPlaceDAO {
         em.getTransaction().begin();
 
         try {
-            StoringPlace storingPlace2 = new StoringPlace();
+            StoringPlace storingPlace2 = getById(storingPlace.getId());
 
             storingPlace2.setStoringPlaceName(storingPlace.getStoringPlaceName());
             storingPlace2.setPackings(storingPlace.getPackings());
