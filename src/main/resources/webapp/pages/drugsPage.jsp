@@ -10,6 +10,8 @@
     <h1>Drugs List</h1>
 
     <a href="pages/addDrugPage.jsp">Add new drug</a>
+    <br>
+    <a href="<c:url value="/storingPlaceList"/>">Storing places</a>
     <br/>
     <br/>
 

@@ -17,7 +17,7 @@
         <p><input type="text" name="registrationNumber"></p>
         <p><input type="submit" value="add new drug"></p>
         <p></p>
-        <p>* required fields</p>
+        <p>* required field</p>
     </form>
 
 </head>

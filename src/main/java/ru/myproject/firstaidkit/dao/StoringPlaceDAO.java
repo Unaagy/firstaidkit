@@ -10,6 +10,8 @@ public interface StoringPlaceDAO {
     //create
     void add(StoringPlace storingPlace);
 
+    void createStoringPlace(String storingPlaceName);
+
     void createStoringPlace(String storingPlaceName, List<Packing> packings);
 
     //read

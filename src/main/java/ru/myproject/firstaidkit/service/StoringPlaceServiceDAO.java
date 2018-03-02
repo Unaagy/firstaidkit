@@ -1,6 +1,7 @@
 package ru.myproject.firstaidkit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.myproject.firstaidkit.dao.StoringPlaceDAO;
 import ru.myproject.firstaidkit.entity.Packing;
 import ru.myproject.firstaidkit.entity.StoringPlace;
@@ -11,6 +12,7 @@ import javax.persistence.NoResultException;
 import java.awt.*;
 import java.util.List;
 
+@Service
 public class StoringPlaceServiceDAO implements StoringPlaceDAO {
 
     private EntityManager em;
@@ -32,6 +34,14 @@ public class StoringPlaceServiceDAO implements StoringPlaceDAO {
             em.getTransaction().rollback();
             throw t;
         }
+    }
+
+    @Override
+    public void createStoringPlace(String storingPlaceName) {
+        StoringPlace storingPlace = new StoringPlace();
+        storingPlace.setStoringPlaceName(storingPlaceName);
+
+        add(storingPlace);
     }
 
     @Override
