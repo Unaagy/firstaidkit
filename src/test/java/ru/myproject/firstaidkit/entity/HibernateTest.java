@@ -5,9 +5,7 @@ import static org.junit.Assert.*;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class HibernateTest {
 
@@ -57,7 +55,7 @@ public class HibernateTest {
         StoringPlace storingPlace = new StoringPlace();
         storingPlace.setStoringPlaceName("TestBox");
 
-        Set<StoringPlace> places = new HashSet<>();
+        List<StoringPlace> places = new ArrayList<>();
         places.add(storingPlace);
 
         Packing packing = new Packing(drug, "Teva", 10L,

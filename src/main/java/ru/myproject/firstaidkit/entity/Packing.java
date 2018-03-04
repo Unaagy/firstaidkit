@@ -3,6 +3,7 @@ package ru.myproject.firstaidkit.entity;
 import javax.persistence.*;
 import java.security.PrivilegedExceptionAction;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,13 +32,13 @@ public class Packing {
 
     @Column(name = "STORING_PLACE", nullable = false)
     @ManyToMany(mappedBy = "packings")
-    private Set<StoringPlace> storingPlaces;
+    private List<StoringPlace> storingPlaces;
 
 
     public Packing() {
     }
 
-    public Packing(Drug drug, String manufacturer, long amount, long dosage, Date expirationDate, Set<StoringPlace> storingPlaces) {
+    public Packing(Drug drug, String manufacturer, long amount, long dosage, Date expirationDate, List<StoringPlace> storingPlaces) {
         this.drug = drug;
         this.manufacturer = manufacturer;
         this.amount = amount;
@@ -86,11 +87,11 @@ public class Packing {
         this.expirationDate = expirationDate;
     }
 
-    public Set<StoringPlace> getStoringPlaces() {
+    public List<StoringPlace> getStoringPlaces() {
         return storingPlaces;
     }
 
-    public void setStoringPlaces(Set<StoringPlace> storingPlaces) {
+    public void setStoringPlaces(List<StoringPlace> storingPlaces) {
         this.storingPlaces = storingPlaces;
     }
 
