@@ -27,7 +27,7 @@ public class DrugController {
 
     //Show all drugs on a page
     //TODO Don't forget to change it, when real index appear
-    @RequestMapping(method = RequestMethod.GET, path = "/")
+    @RequestMapping(method = RequestMethod.GET, path = "/drugs")
     public String drugList(ModelMap model) {
         DrugBean drugBean = new DrugBean();
         drugBean.setDrugs(dao.getAll());
@@ -58,8 +58,8 @@ public class DrugController {
     }
 
 
-    //Open addDrugProblemPage.jsp if there is a problen in addDrug() method
-    @RequestMapping(method = RequestMethod.GET, path = "error/addDrugProblemPage")
+    //Open addDrugProblemPage.jsp if there is a problem in addDrug() method
+    @RequestMapping(method = RequestMethod.GET, path = "/error/addDrugProblemPage")
     public String addDrugProblem() {
         return "addDrugProblemPage";
     }
@@ -71,7 +71,7 @@ public class DrugController {
 
         dao.delete(dao.getById(id));
 
-        return "redirect:/";
+        return "redirect:/drugs";
     }
 
 
@@ -108,7 +108,7 @@ public class DrugController {
         }
         System.out.println("********** EDIT DRUG ******************");
 
-        return "redirect:/";
+        return "redirect:/drugs";
     }
 
 }

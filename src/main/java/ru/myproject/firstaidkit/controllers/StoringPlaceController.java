@@ -66,8 +66,9 @@ public class StoringPlaceController {
 
 
     //Delete Storing place
-    @RequestMapping(path = "deleteStoringPlace/{id}")
+    @RequestMapping(path = "/deleteStoringPlace/{id}")
     public String deleteStoringPlace(@PathVariable("id") long id) {
+
         dao.remove(dao.getById(id));
 
         return "redirect:/storingPlaceList";
@@ -86,11 +87,9 @@ public class StoringPlaceController {
         return "editStoringPlacePage";
     }
 
-
     @RequestMapping(method = RequestMethod.POST, path = "/editStoringPlace")
     public String editStoringPlacePost(@RequestParam long id,
                                        @RequestParam String storingPlaceName) {
-
         try {
             StoringPlace storingPlace = dao.getById(id);
 

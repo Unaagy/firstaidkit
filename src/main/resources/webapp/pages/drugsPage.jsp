@@ -9,10 +9,11 @@
 
     <h1>Drugs List</h1>
 
-    <a href="pages/addDrugPage.jsp">Add new drug</a>
+    <a href="<c:url value="/"/>">Packings</a>
     <br>
     <a href="<c:url value="/storingPlaceList"/>">Storing places</a>
     <br/>
+    <a href="pages/addDrugPage.jsp">Add new drug</a>
     <br/>
 
     <table border="1">

@@ -5,13 +5,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Adding drug problem</title>
+    <title>Adding packing problem</title>
 </head>
 <body>
 <h1>Oops!</h1>
-<p>There is a problem with a creation of a new drug!</p>
-<p>Maybe it already exists</p>
+<p>There is a problem with a creation of a new packing!</p>
 
-<p><a href="<c:url value = "/drugs"/>">Return to a drugs list</a></p>
+
+<p><a href="<c:url value = "/"/>">Return to a packings list</a></p>
 </body>
 </html>

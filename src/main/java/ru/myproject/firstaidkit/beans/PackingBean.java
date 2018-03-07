@@ -11,6 +11,7 @@ public class PackingBean {
     private long id;
 
     public PackingBean() {
+
     }
 
 

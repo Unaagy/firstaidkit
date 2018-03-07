@@ -1,5 +1,7 @@
 package ru.myproject.firstaidkit.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.security.PrivilegedExceptionAction;
 import java.sql.Date;
@@ -27,10 +29,13 @@ public class Packing {
     @Column(name = "DOSAGE")
     private long dosage;
 
+//    @DateTimeFormat(pattern = "dd.MM.yyyy")
     @Column(name = "EXPIRATION_DATE")
     private Date expirationDate;
 
-    @Column(name = "STORING_PLACE", nullable = false)
+    //TODO architecture mistake. One packing can lays in one box, but in one box can be many packings
+//    @Column(name = "STORING_PLACE", nullable = false)
+    @Column(name = "STORING_PLACE")
     @ManyToMany(mappedBy = "packings")
     private List<StoringPlace> storingPlaces;
 
