@@ -12,9 +12,11 @@
 
     <a href="<c:url value="/"/>">Packings</a>
     <br/>
+    <br/>
     <a href="<c:url value="/drugs"/>">Drugs </a>
     <br/>
-    <a href="pages/addStoringPlacePage.jsp">Add new storing place</a>
+    <br/>
+    <a href="pages/addStoringPlacePage.jsp">+Add new storing place</a>
     <br/>
     <br/>
 

@@ -11,9 +11,11 @@
 
     <a href="<c:url value="/drugs"/>">Drugs </a>
     <br/>
+    <br/>
     <a href="<c:url value="/storingPlaceList"/>">Storing places </a>
     <br/>
-    <a href="pages/addPackingPage.jsp">Add new packing</a>
+    <br/>
+    <a href="pages/addPackingPage.jsp">+Add new packing</a>
     <br/>
     <br/>
 
@@ -25,7 +27,7 @@
             <th width="100">Amount</th>
             <th width="100">Dosage</th>
             <th width="150">Expiration date</th>
-            <%--<th width="200">Storing place</th>--%>
+            <th width="200">Storing place</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
@@ -34,10 +36,10 @@
             <td align="center">${packing.id}</td>
             <td>${packing.drug.drugName}</td>
             <td>${packing.manufacturer}</td>
-            <td>${packing.amount}</td>
-            <td>${packing.dosage}</td>
-            <td>${packing.expirationDate}</td>
-            <%--<td>${packing.storingPlaces}</td>--%>
+            <td align="center">${packing.amount}</td>
+            <td align="center">${packing.dosage}</td>
+            <td align="center">${packing.expirationDate}</td>
+            <td>${packing.storingPlace.storingPlaceName}</td>
             <td align="center"><a href="<c:url value="/editPacking/${packing.id}"/>">Edit</a></td>
             <td align="center"><a href="<c:url value="/deletePacking/${packing.id}"/>">Delete</a></td>
         <tr>

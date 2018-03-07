@@ -26,7 +26,6 @@ public class DrugController {
 
 
     //Show all drugs on a page
-    //TODO Don't forget to change it, when real index appear
     @RequestMapping(method = RequestMethod.GET, path = "/drugs")
     public String drugList(ModelMap model) {
         DrugBean drugBean = new DrugBean();

@@ -14,7 +14,7 @@ public interface PackingDAO {
 
     void createPacking(Drug drug, String manufacturer, long amount,
                        long dosage, Date expirationDate,
-                       List<StoringPlace> storingPlaces);
+                       StoringPlace storingPlace);
 
     //read
     List<Packing> getAll();

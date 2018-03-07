@@ -15,29 +15,22 @@ import java.util.List;
 @Service
 public class DrugServiceDAO implements DrugDAO {
 
-//    private EntityManagerFactory factory;
-
     private EntityManager em;
 
     @Autowired
     public DrugServiceDAO(EntityManagerFactory factory) {
-//        this.factory = factory;
         em = factory.createEntityManager();
-//        this.em = em;
     }
 
 
     @Override
     public void add(Drug drug) {
-//        beginEntityManagerTransaction();
         em.getTransaction().begin();
 
         try {
             em.persist(drug);
-//            commitEntityManagerTransaction();
             em.getTransaction().commit();
         } catch (Throwable t) {
-//            rollbackEntityManagerTransaction();
             em.getTransaction().rollback();
             throw t;
         }
@@ -87,15 +80,10 @@ public class DrugServiceDAO implements DrugDAO {
 
     @Override
     public Drug update(Drug drug) {
-//        beginEntityManagerTransaction();
         em.getTransaction().begin();
 
         try {
-//            Drug mergedDrug = em.merge(drug);
-//            commitEntityManagerTransaction();
-//            em.getTransaction().commit();
-//            return mergedDrug;
-            //TODO try to do it using links instead of two objects
+
             Drug drug2 = getById(drug.getId());
             drug2.setDrugName(drug.getDrugName());
             drug2.setRegistrationNumber(drug.getRegistrationNumber());
@@ -104,7 +92,6 @@ public class DrugServiceDAO implements DrugDAO {
             em.getTransaction().commit();
             return drug2;
         } catch (Throwable t) {
-//            rollbackEntityManagerTransaction();
             em.getTransaction().rollback();
             return drug;
         }
@@ -113,15 +100,12 @@ public class DrugServiceDAO implements DrugDAO {
 
     @Override
     public void delete(Drug drug) {
-//        beginEntityManagerTransaction();
         em.getTransaction().begin();
 
         try {
             em.remove(drug);
-//            commitEntityManagerTransaction();
             em.getTransaction().commit();
         } catch (Throwable t) {
-//            rollbackEntityManagerTransaction();
             em.getTransaction().rollback();
             throw t;
         }

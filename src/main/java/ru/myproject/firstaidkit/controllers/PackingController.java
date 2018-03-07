@@ -66,16 +66,13 @@ public class PackingController {
 
             Date date = Util.getDate(expirationDate);
 
-            List<StoringPlace> newPlacesList = new ArrayList<>();
-            newPlacesList.add(storingPlaceServiceDAO.getByName(storingPlaceName));
-
             Packing packing = new Packing();
             packing.setDrug(drugServiceDAO.getByName(drug));
             packing.setManufacturer(manufacturer);
             packing.setAmount(amount);
             packing.setDosage(dosage);
             packing.setExpirationDate(date);
-            packing.setStoringPlaces(newPlacesList);
+            packing.setStoringPlace(storingPlaceServiceDAO.getByName(storingPlaceName));
 
             packingServiceDAO.add(packing);
 
@@ -123,8 +120,8 @@ public class PackingController {
                                   @RequestParam String manufacturer,
                                   @RequestParam long amount,
                                   @RequestParam long dosage,
-                                  @RequestParam String expirationDate//,
-                                  /*@RequestParam String storingPlaceName*/) {
+                                  @RequestParam String expirationDate,
+                                  @RequestParam String storingPlaceName) {
         try {
             if (drug.equals("")) throw new PersistenceException();
 
@@ -132,15 +129,12 @@ public class PackingController {
 
             Packing packing = packingServiceDAO.getById(id);
 
-//            List<StoringPlace> newPlacesList = new ArrayList<>();
-//            newPlacesList.add(storingPlaceServiceDAO.getByName(storingPlaceName));
-
             packing.setDrug(drugServiceDAO.getByName(drug));
             packing.setManufacturer(manufacturer);
             packing.setAmount(amount);
             packing.setDosage(dosage);
             packing.setExpirationDate(date);
-//            packing.setStoringPlaces(newPlacesList);
+            packing.setStoringPlace(storingPlaceServiceDAO.getByName(storingPlaceName));
 
             packingServiceDAO.update(packing);
         } catch (Throwable t) {

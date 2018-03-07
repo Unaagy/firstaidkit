@@ -40,10 +40,10 @@ public class PackingServiceDAO implements PackingDAO {
     @Override
     public void createPacking(Drug drug, String manufacturer, long amount,
                               long dosage, Date expirationDate,
-                              List<StoringPlace> storingPlaces) {
+                              StoringPlace storingPlace) {
 
         Packing packing = new Packing(drug, manufacturer, amount, dosage,
-                expirationDate, storingPlaces);
+                expirationDate, storingPlace);
 
         add(packing);
 
@@ -97,7 +97,7 @@ public class PackingServiceDAO implements PackingDAO {
             packing2.setAmount(packing.getAmount());
             packing2.setDosage(packing.getDosage());
             packing2.setExpirationDate(packing.getExpirationDate());
-            packing2.setStoringPlaces(packing.getStoringPlaces());
+            packing2.setStoringPlace(packing.getStoringPlace());
 
             em.persist(packing2);
             em.getTransaction().commit();

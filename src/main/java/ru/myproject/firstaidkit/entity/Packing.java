@@ -33,23 +33,25 @@ public class Packing {
     @Column(name = "EXPIRATION_DATE")
     private Date expirationDate;
 
-    //TODO architecture mistake. One packing can lays in one box, but in one box can be many packings
-//    @Column(name = "STORING_PLACE", nullable = false)
-    @Column(name = "STORING_PLACE")
-    @ManyToMany(mappedBy = "packings")
-    private List<StoringPlace> storingPlaces;
+    @ManyToOne
+    @JoinTable(
+            name = "PLACE_PACKING",
+            joinColumns = @JoinColumn(name = "STORING_PLACE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PACKING_ID")
+    )
+    private StoringPlace storingPlace;
 
 
     public Packing() {
     }
 
-    public Packing(Drug drug, String manufacturer, long amount, long dosage, Date expirationDate, List<StoringPlace> storingPlaces) {
+    public Packing(Drug drug, String manufacturer, long amount, long dosage, Date expirationDate, StoringPlace storingPlace) {
         this.drug = drug;
         this.manufacturer = manufacturer;
         this.amount = amount;
         this.dosage = dosage;
         this.expirationDate = expirationDate;
-        this.storingPlaces = storingPlaces;
+        this.storingPlace = storingPlace;
     }
 
     public long getId() {
@@ -92,12 +94,12 @@ public class Packing {
         this.expirationDate = expirationDate;
     }
 
-    public List<StoringPlace> getStoringPlaces() {
-        return storingPlaces;
+    public StoringPlace getStoringPlace() {
+        return storingPlace;
     }
 
-    public void setStoringPlaces(List<StoringPlace> storingPlaces) {
-        this.storingPlaces = storingPlaces;
+    public void setStoringPlace(StoringPlace storingPlace) {
+        this.storingPlace = storingPlace;
     }
 
     public String getManufacturer() {
@@ -124,7 +126,7 @@ public class Packing {
             return false;
         if (expirationDate != null ? !expirationDate.equals(packing.expirationDate) : packing.expirationDate != null)
             return false;
-        return storingPlaces != null ? storingPlaces.equals(packing.storingPlaces) : packing.storingPlaces == null;
+        return storingPlace != null ? storingPlace.equals(packing.storingPlace) : packing.storingPlace == null;
     }
 
     @Override
@@ -135,7 +137,7 @@ public class Packing {
         result = 31 * result + (int) (amount ^ (amount >>> 32));
         result = 31 * result + (int) (dosage ^ (dosage >>> 32));
         result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
-        result = 31 * result + (storingPlaces != null ? storingPlaces.hashCode() : 0);
+        result = 31 * result + (storingPlace != null ? storingPlace.hashCode() : 0);
         return result;
     }
 

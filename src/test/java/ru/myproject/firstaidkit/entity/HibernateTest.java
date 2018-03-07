@@ -55,21 +55,22 @@ public class HibernateTest {
         StoringPlace storingPlace = new StoringPlace();
         storingPlace.setStoringPlaceName("TestBox");
 
-        List<StoringPlace> places = new ArrayList<>();
-        places.add(storingPlace);
+//        List<StoringPlace> places = new ArrayList<>();
+//        places.add(storingPlace);
 
         Packing packing = new Packing(drug, "Teva", 10L,
-                500, date, places);
+                500, date, storingPlace);
 
         em.getTransaction().begin();
         em.persist(drug);
+        em.persist(storingPlace);
         em.persist(packing);
         em.getTransaction().commit();
 
         assertEquals("Aspirine", em.find(Drug.class, 1L).getDrugName());
         assertEquals(drug, em.find(Packing.class, 1L).getDrug());
 
-        StoringPlace sp = (StoringPlace) em.find(Packing.class, 1L).getStoringPlaces().toArray()[0];
+        StoringPlace sp = (StoringPlace) em.find(Packing.class, 1L).getStoringPlace();
         assertEquals("TestBox", sp.getStoringPlaceName());
 
     }

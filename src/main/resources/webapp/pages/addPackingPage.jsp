@@ -17,7 +17,7 @@
         <p><input type="text" name="amount" value="0"></p>
         <p>Dosage:</p>
         <p><input type="text" name="dosage" value="0"></p>
-        <p>Expiration date:</p>
+        <p>Expiration date*:</p>
         <p><input type="date" name="expirationDate"></p>
         <p>Storing place name*:</p>
         <p><input type="text" name="storingPlaceName"></p>

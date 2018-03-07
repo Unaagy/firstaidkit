@@ -15,12 +15,12 @@ public class StoringPlace {
     @Column(name = "STORING_PLACE_NAME", nullable = false)
     private String storingPlaceName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "PLACE_PACKING",
-            joinColumns = @JoinColumn(name = "STORING_PLACE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PACKING_ID")
-    )
+    @OneToMany(mappedBy = "storingPlace",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "PLACE_PACKING",
+//            joinColumns = @JoinColumn(name = "STORING_PLACE_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "PACKING_ID")
+//    )
     private List<Packing> packings;
 
 
