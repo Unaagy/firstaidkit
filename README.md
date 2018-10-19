@@ -13,3 +13,4 @@ Basic features:
 
 
 > This is a training project for [LevelUp](http://levelp.ru) programming school.
+
